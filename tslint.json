@@ -1,4 +1,14 @@
 {
+  "compilerOptions": {
+    "sourceMap": true,
+    "paths": {
+      "@app": ["./src"],
+      "@app/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "src/**/*"
+  ],
   "defaultSeverity": "error",
   "extends": ["tslint:recommended"],
   "jsRules": {
