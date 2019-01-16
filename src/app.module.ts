@@ -14,9 +14,11 @@ import { CatsController } from './modules/cats/cats.controller';
 import { HttpExceptionFilter } from './filter/http-exception.filter';
 import { APP_FILTER } from '@nestjs/core';
 
+import {DatabaseModule} from 'src/processors/database/database.module'
 @Module({
   imports: [
-    CastModules
+    CastModules,
+    DatabaseModule
   ],
   controllers: [AppController],
   providers: [AppService, {
