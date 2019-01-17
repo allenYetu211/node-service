@@ -23,8 +23,9 @@ export const databaseProvider = {
     // 连接错误
     mongoose.connection.on('error', error => {
       const timeout = 6;
-      setTimeout(connection, timeout * 1000);
-      setTimeout(() => console.warn(`数据库连接失败！将在 ${timeout}s 后重试`, error), 0);
+      console.warn(`数据库连接失败！`)
+      // setTimeout(connection, timeout * 1000);
+      // setTimeout(() => console.warn(`数据库连接失败！将在 ${timeout}s 后重试`, error), 0);
     });
 
     // 连接成功
