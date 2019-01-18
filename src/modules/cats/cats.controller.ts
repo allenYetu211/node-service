@@ -35,9 +35,7 @@ export class CatsController {
   @UsePipes(new ValidationPipe())
   async create(@Body()createCatDto : CreateCatDto) {
     console.log('post:::')
-    this
-      .catsService
-      .create(createCatDto)
+    this.catsService.saveOption(createCatDto)
     return []
   }
   // @HttpCode(204) @Post() async create(@Res() res, @Body() createCatDto:
