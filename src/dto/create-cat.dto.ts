@@ -6,6 +6,8 @@
 
 import {IsString, IsInt} from 'class-validator'
 
+// import { ApiModelProperty } from '@nestjs/swagger';
+
 export class CreateCatDto {
   @IsString()
   readonly name : string;

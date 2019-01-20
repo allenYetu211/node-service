@@ -3,31 +3,27 @@
  * @module: cat service
  * @author:  Allen OYang https://github.com/allenYetu211
  */
-import { Injectable, Inject } from "@nestjs/common";
-import {Cat} from '../../interface/cat.interface'
-import { Model } from 'mongoose';
 
-console.log('Model', Model)
+import { Model } from 'mongoose';
+import { Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import {Cat} from 'src/interface/cat.interface'
+import { CreateCatDto } from "src/dto/create-cat.dto";
+import { TMongooseModel } from 'src/interface/mongoose.interface';
 @Injectable()
 export class CatsService {
+  constructor(@InjectModel('CatModelToken') private readonly catModel: Model<Cat>) {}
+  public async create(createCatDto: CreateCatDto): Promise<Cat> {
+  // console.log('catModel',this.catModel)
 
-  // constructor( @Inject('optionModel') private readonly optionModel: Model<Cat>) { }
-  
-  private readonly cats : Cat[] = [];
-
-  create(cat: Cat){
-    this.cats.push(cat)
-  }
-
-  findAll():Cat[] {
-    return this.cats
-  }
-
-  public async saveOption (option: any): Promise<Cat>  {
-    console.log('option', option); 
+    // const createdCat = new this.catModel(createCatDto);
+    // return await createdCat.save();
     return 
-    // return await this.optionModel(option).save();
   }
 
-  
+
+  public async findAll(): Promise<Cat[]> {
+    // return await this.catModel.find().exec();
+    return
+  }
 }

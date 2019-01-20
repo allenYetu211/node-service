@@ -9,7 +9,7 @@ import * as APP_CONFIG from 'src/app.config';
 import * as mongoose from 'mongoose';
 
 export const databaseProvider = {
-  provide: 'DbConnectionToken',
+  provide: 'MongoDBConnection',
   useFactory: async () => { 
 
     // 连接数据库

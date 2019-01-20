@@ -34,17 +34,9 @@ export class CatsController {
   @Post()
   @Roles('admin')
   @UsePipes(new ValidationPipe())
-<<<<<<< HEAD
-  async create(@Body()createCatDto : CreateCatDto) {
-    console.log('post:::')
-    this.catsService.saveOption(createCatDto)
-=======
   async create(@Response() res, @Body() createCatDto : CreateCatDto) {
-    console.log('createCatDto:::', createCatDto)
     console.log('res:::', res)
-    this.catsService.create(createCatDto)
->>>>>>> 6e8488ce451ee96e0824148deb2992a5ee6413cc
-    return []
+    return this.catsService.create(createCatDto)
   }
 
   // @HttpCode(204)
