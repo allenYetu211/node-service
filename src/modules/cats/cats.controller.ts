@@ -35,7 +35,7 @@ export class CatsController {
   @Roles('admin')
   @UsePipes(new ValidationPipe())
   async create(@Response() res, @Body() createCatDto : CreateCatDto) {
-    console.log('res:::', res)
+    console.log('createCatDto:::', createCatDto)
     return this.catsService.create(createCatDto)
   }
 
@@ -61,7 +61,7 @@ export class CatsController {
 
 
   @Get()
-  findAll(@Req()request) {
-    return {"data1": []}
+  findAll(@Req() request) {
+    return this.catsService.findAll()
   }
 }
