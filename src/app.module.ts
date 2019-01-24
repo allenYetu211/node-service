@@ -9,6 +9,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import {CatsModules} from './modules/cats/cats.modules'
+import {TagModules} from 'src/modules/tag/tag.modules'
 import { LoggerMiddleware, someLogger } from './middleware/logger.middleware';
 import { CatsController } from './modules/cats/cats.controller';
 import { HttpExceptionFilter } from './filter/http-exception.filter';
@@ -18,14 +19,16 @@ import {DatabaseModule} from 'src/processors/database/database.module'
 @Module({
   imports: [
     CatsModules,
+    TagModules,
     MongooseModule.forRoot('mongodb://localhost/nest')
     // DatabaseModule
   ],
   controllers: [AppController],
-  providers: [AppService, {
-    provide: APP_FILTER,
-    useClass: HttpExceptionFilter
-  }],
+  // providers: [AppService, {
+  //   provide: APP_FILTER,
+  //   useClass: HttpExceptionFilter
+  // }],
+  providers: [AppService],
 })
 export class AppModule implements NestModule  {
   configure(consumer: MiddlewareConsumer) {

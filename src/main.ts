@@ -9,7 +9,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(someLogger)
   // app.useGlobalGuards(new RolesGuard())
-  app.useGlobalFilters(new HttpExceptionFilter())
+  // app.useGlobalFilters(new HttpExceptionFilter())
   return await app.listen(3000);
 }
 bootstrap();
