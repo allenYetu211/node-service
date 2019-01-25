@@ -16,11 +16,13 @@ import { HttpExceptionFilter } from './filter/http-exception.filter';
 import { APP_FILTER } from '@nestjs/core';
 import { MongooseModule } from '@nestjs/mongoose';
 import {DatabaseModule} from 'src/processors/database/database.module'
+import { ArticleModules } from './modules/articles/article.modules';
 @Module({
   imports: [
+    MongooseModule.forRoot('mongodb://localhost/nest'),
+    ArticleModules,
     CatsModules,
     TagModules,
-    MongooseModule.forRoot('mongodb://localhost/nest')
     // DatabaseModule
   ],
   controllers: [AppController],

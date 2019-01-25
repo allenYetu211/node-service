@@ -59,7 +59,7 @@ export class TagController {
     }
     return res.status(HttpStatus.OK).json({
       message: 'Tag has been successfully deleted!!',
-      movie: deleteTag
+      tag: deleteTag
     })
   }
 }
