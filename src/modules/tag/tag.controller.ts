@@ -6,7 +6,6 @@ import { ValidataObjectId } from "src/pipes/validate-object-id.pipe";
 
 @Controller('tag')
 export class TagController {
-
   constructor(private readonly tagService: TagService) {}
   // 添加tag
   @Post()
@@ -19,7 +18,7 @@ export class TagController {
   }
   // 查找全部tag
   @Get()
-  public async getTags(@Res() res) {
+  public async getTags(@Res() res ) {
     const tags = await this.tagService.getTags()
     return res.status(HttpStatus.OK).json({tags})
   }
@@ -49,6 +48,7 @@ export class TagController {
         tag: updateTag
       })
   }
+
   // 删除Tag
   @Delete()
   public async deleteTag(@Res() res, @Query('tagID', new ValidataObjectId()) tagID) {

@@ -14,8 +14,9 @@ export class ArticleService {
     return articles.save()
   }
 
-  public async getArticles(): Promise <Article> {
-    const fetchedArticles =   this.articleModle.find().exec();
+  public async getArticles(tag_class): Promise <Article> {
+    const tags = tag_class ? {tags: tag_class} : {}
+    const fetchedArticles = this.articleModle.find(tags).select('-content').exec();
     return fetchedArticles
   }
 

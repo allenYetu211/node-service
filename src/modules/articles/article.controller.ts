@@ -2,6 +2,7 @@ import { Controller, Put, Res, Body, HttpStatus, Post, Get, Param, NotFoundExcep
 import {ArticleService} from 'src/modules/articles/article.service'
 import {CreateArticleDto} from 'src/modules/articles/dto/create-articles'
 import { ValidataObjectId } from "src/pipes/validate-object-id.pipe";
+
 @Controller('article')
 export class ArticleController {
   constructor(private readonly articleService: ArticleService){}
@@ -16,10 +17,10 @@ export class ArticleController {
     })
   }
 
-  // 查找文章
+  // 查找文章列表 && 处理 tag 分类 
   @Get()
-  public async getArticles(@Res() res) {
-    const fetchedArticles = await this.articleService.getArticles()
+  public async getArticles(@Res() res,  @Query('tag_class') tag_class) {
+    const fetchedArticles = await this.articleService.getArticles(tag_class)
     return res.status(HttpStatus.OK).json({fetchedArticles})
   }
 
