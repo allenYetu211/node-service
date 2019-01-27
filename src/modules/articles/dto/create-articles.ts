@@ -9,5 +9,4 @@ export  class CreateArticleDto {
   readonly interduce: string;
   @IsString()
   readonly content: string;
-
 }

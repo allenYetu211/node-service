@@ -22,6 +22,10 @@ export class ArticleService {
 
   public async getArticle(articleID): Promise<Article> {
     const fetchedArticle = await this.articleModle.findById(articleID).exec()
+   
+    // 更新文章访问数量
+    fetchedArticle.meta.view++
+    fetchedArticle.save()
     return fetchedArticle
   }
 

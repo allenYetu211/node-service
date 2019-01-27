@@ -17,12 +17,14 @@ import { APP_FILTER } from '@nestjs/core';
 import { MongooseModule } from '@nestjs/mongoose';
 import {DatabaseModule} from 'src/processors/database/database.module'
 import { ArticleModules } from './modules/articles/article.modules';
+import { LikeModules } from './modules/likes/like.modules';
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost/nest'),
     ArticleModules,
     CatsModules,
     TagModules,
+    LikeModules
     // DatabaseModule
   ],
   controllers: [AppController],
