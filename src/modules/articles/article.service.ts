@@ -7,21 +7,21 @@ import {CreateArticleDto} from 'src/modules/articles/dto/create-articles'
 
 @Injectable()
 export class ArticleService {
-  constructor(@InjectModel('article') private readonly articleModle : Model <Article>) {}
+  constructor(@InjectModel('article') private readonly articleModel : Model <Article>) {}
 
   public async addArticle(createArticleDto: CreateArticleDto) : Promise <Article> {
-    const articles = await this.articleModle(createArticleDto)
+    const articles = await this.articleModel(createArticleDto)
     return articles.save()
   }
 
   public async getArticles(tag_class): Promise <Article> {
     const tags = tag_class ? {tags: tag_class} : {}
-    const fetchedArticles = this.articleModle.find(tags).select('-content').exec();
+    const fetchedArticles = this.articleModel.find(tags).select('-content').exec();
     return fetchedArticles
   }
 
   public async getArticle(articleID): Promise<Article> {
-    const fetchedArticle = await this.articleModle.findById(articleID).exec()
+    const fetchedArticle = await this.articleModel.findById(articleID).exec()
    
     // 更新文章访问数量
     fetchedArticle.meta.view++
@@ -30,12 +30,12 @@ export class ArticleService {
   }
 
   public async updateArticle(articleID, createArticleDto: CreateArticleDto) : Promise <Article> {
-    const updateArticle = await this.articleModle.findByIdAndUpdate(articleID, createArticleDto, {new: true})
+    const updateArticle = await this.articleModel.findByIdAndUpdate(articleID, createArticleDto, {new: true})
     return updateArticle
   }
 
   public async deleteArticle(articleID): Promise <Article>  {
-    const deleteArticle = this.articleModle.findByIdAndDelete(articleID)
+    const deleteArticle = this.articleModel.findByIdAndDelete(articleID)
     return deleteArticle
   }
 
