@@ -18,13 +18,15 @@ import { MongooseModule } from '@nestjs/mongoose';
 import {DatabaseModule} from 'src/processors/database/database.module'
 import { ArticleModules } from './modules/articles/article.modules';
 import { LikeModules } from './modules/likes/like.modules';
+import {CommentModules} from './modules/comment/comment.modules'
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost/nest'),
     ArticleModules,
     CatsModules,
     TagModules,
-    LikeModules
+    LikeModules,
+    CommentModules
     // DatabaseModule
   ],
   controllers: [AppController],
