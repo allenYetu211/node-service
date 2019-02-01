@@ -5,15 +5,7 @@ export class LikeController {
     constructor (private readonly likeService: LikeService)  {}
 
     @Patch()
-    likeArticle(@Res() res , @Body('articleID') articleID) {
-        const fetchedArticle = this.likeService.likeArticle(articleID)
-        if (!fetchedArticle) {
-          throw new NotFoundException('Article does not exist!')
-        }
-
-        return res.status(HttpStatus.OK).json({
-          message: '点赞成功'
-        })
-        
+    likeArticle(@Body('articleID') articleID) {
+        return this.likeService.likeArticle(articleID)
     }
 } 

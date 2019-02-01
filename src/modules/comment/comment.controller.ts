@@ -8,31 +8,18 @@ export class CommentController {
 
   // 添加评论， 回复评论
   @Post()
-  public async createComent(@Res() res, @Body() createCommentDto: CreateCommentDto) {
-    const createComent = await this.commentService.createComment(createCommentDto)
-    return res.status(HttpStatus.OK).json({createComent})
+  public async createComent( @Body() createCommentDto: CreateCommentDto) {
+    return await this.commentService.createComment(createCommentDto)
   }
 
   @Get(':articleID')
-  public async fetchComment(@Res() res, @Param('articleID') articleID) {
-    const fetchedComment = await this.commentService.fetchComment(articleID)
-    if(!fetchedComment){
-      throw new NotFoundException('Article comment does not exit!')
-    }
-    res.status(HttpStatus.OK).json({fetchedComment})
+  public async fetchComment( @Param('articleID') articleID) {
+    return  await this.commentService.fetchComment(articleID)
   }
 
   @Delete()
   public async deleteComment(
-    @Res() res,
     @Query('commentID')  commentID) {
-      const deleteComment = await this.commentService.deleteComment(commentID)
-      if (!deleteComment) {
-        throw new NotFoundException('comment does not exist!')
-      }
-      return res.status(HttpStatus.OK).json({
-        message: 'comment has been successfully deleted!!',
-        comment: deleteComment
-      })
+      return  await this.commentService.deleteComment(commentID)
    }
 }

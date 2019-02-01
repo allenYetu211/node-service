@@ -9,57 +9,31 @@ export class TagController {
   constructor(private readonly tagService: TagService) {}
   // 添加tag
   @Post()
-  public async addTag(@Res() res, @Body() createTagDto: CreateTagDto) {
-    const addedTag = await this.tagService.addTag(createTagDto)
-    return res.status(HttpStatus.OK).json({
-      message: 'Tag has been successfully added!',
-      tag: addedTag
-    })
+  public async addTag(@Body() createTagDto: CreateTagDto) {
+    return await this.tagService.addTag(createTagDto)
   }
   // 查找全部tag
   @Get()
-  public async getTags(@Res() res ) {
-    const tags = await this.tagService.getTags()
-    return res.status(HttpStatus.OK).json({tags})
+  public async getTags() {
+    return await this.tagService.getTags()
   }
   //  查找单个tag
   @Get(':tagID')
-  public async getTag(@Res() res, @Param('tagID', new ValidataObjectId()) tagID) {
-    const fetchedTag = await this.tagService.getTag(tagID)
-    if (!fetchedTag) {
-      throw new NotFoundException('Tag does not exist!')
-    }
-    return res.status(HttpStatus.OK).json({fetchedTag})
+  public async getTag( @Param('tagID', new ValidataObjectId()) tagID) {
+    return await this.tagService.getTag(tagID)
   }
 
   // 修改tag
   @Put()
   public async updateTag(
-    @Res() res,
     @Query('tagID', new ValidataObjectId()) tagID,
     @Body() createTagDto: CreateTagDto){
-      const updateTag = await this.tagService.updateTag(tagID, createTagDto)
-      if (!updateTag) {
-        throw new NotFoundException('Tag does not exist!')
-      }
-
-      return res.status(HttpStatus.OK).json({
-        message: 'Tag has been successfully updated!',
-        tag: updateTag
-      })
+      return await this.tagService.updateTag(tagID, createTagDto)
   }
 
   // 删除Tag
   @Delete()
-  public async deleteTag(@Res() res, @Query('tagID', new ValidataObjectId()) tagID) {
-
-    const deleteTag = await this.tagService.deleteTag(tagID)
-    if (!deleteTag) {
-      throw new NotFoundException('Tag does not exist!')
-    }
-    return res.status(HttpStatus.OK).json({
-      message: 'Tag has been successfully deleted!!',
-      tag: deleteTag
-    })
+  public async deleteTag(@Query('tagID', new ValidataObjectId()) tagID) {
+    return  await this.tagService.deleteTag(tagID)
   }
 }

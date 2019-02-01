@@ -15,9 +15,9 @@ export class ArticleService {
   }
 
   public async getArticles(tag_class): Promise <Article> {
-    const tags = tag_class ? {tags: tag_class} : {}
-    const fetchedArticles = this.articleModel.find(tags).select('-content').exec();
-    return fetchedArticles
+    return await this.articleModel.find(tag_class).select('-content').exec();
+    // const fetchedArticles = await this.articleModel.find(tags).select('-content').exec();
+    // return fetchedArticles
   }
 
   public async getArticle(articleID): Promise<Article> {

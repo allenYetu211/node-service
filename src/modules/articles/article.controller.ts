@@ -1,7 +1,8 @@
-import { Controller, Put, Res, Body, HttpStatus, Post, Get, Param, NotFoundException, Query, Delete } from "@nestjs/common";
+import { Controller, Put, Res, Body, HttpStatus, Post, Get, Param, NotFoundException, Query, Delete, UseInterceptors } from "@nestjs/common";
 import {ArticleService} from 'src/modules/articles/article.service'
 import {CreateArticleDto} from 'src/modules/articles/dto/create-articles'
 import { ValidataObjectId } from "src/pipes/validate-object-id.pipe";
+import {Article} from 'src/modules/articles/interfaces/article.interface';
 
 @Controller('article')
 export class ArticleController {
@@ -9,63 +10,37 @@ export class ArticleController {
 
   // 添加文章
   @Post()
-  public async addArticle(@Res() res, @Body() createArticleDto: CreateArticleDto) {
-    const addedArticle = await this.articleService.addArticle(createArticleDto)
-    return res.status(HttpStatus.OK).json({
-      message: 'Tag has been successfully added!',
-      article: addedArticle
-    })
+  public async addArticle( @Body() createArticleDto: CreateArticleDto) {
+    return  await this.articleService.addArticle(createArticleDto)
   }
 
   // 查找文章列表 && 处理 tag 分类 
   @Get()
-  public async getArticles(@Res() res,  @Query('tag_class') tag_class) {
-    const fetchedArticles = await this.articleService.getArticles(tag_class)
-    return res.status(HttpStatus.OK).json({fetchedArticles})
+  public async getArticles( @Query('tag_class') tag_class):Promise<Article> {
+    const tags = tag_class ? {tags: tag_class} : {}
+    return await this.articleService.getArticles(tags)
   }
 
   // 查找单篇文章
   @Get(':articleID')
-  public async getArticle(@Res() res , @Param('articleID', new ValidataObjectId()) articleID){
-    const fetchedArticle = await this.articleService.getArticle(articleID)
-    if (!fetchedArticle) {
-      throw new NotFoundException('Article does not exist!')
-    }
-    return res.status(HttpStatus.OK).json({fetchedArticle})
+  public async getArticle(@Param('articleID', new ValidataObjectId()) articleID){
+    return await this.articleService.getArticle(articleID)
   }
 
   // 更新文章
   @Put()
   public async updateArticle(
-    @Res() res,
     @Query('articleID', new ValidataObjectId()) articleID,
     @Body() createArticleDto: CreateArticleDto) {
-
-      const updateArticle = await this.articleService.updateArticle(articleID, createArticleDto)
-      if (!updateArticle) {
-        throw new NotFoundException('Article does not exist!')     
-      }
-
-      return res.status(HttpStatus.OK).json({
-        message: 'Article has been successfully updated!',
-        article: updateArticle
-      })
+      return await this.articleService.updateArticle(articleID, createArticleDto)
   }
 
 
   @Delete()
   public async deleteArticle(
-    @Res() res,
     @Query('articleID', new ValidataObjectId()) articleID,
   ) {
-    const deleteArticle = this.articleService.deleteArticle(articleID)
-    if (!deleteArticle) {
-      throw new NotFoundException('Article does not exist!')
-    }
-    return res.status(HttpStatus.OK).json({
-      message: 'Article has been successfully deleted!!',
-      article: deleteArticle
-    })
+    return this.articleService.deleteArticle(articleID)
   }
 
 }
