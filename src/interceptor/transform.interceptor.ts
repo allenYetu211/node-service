@@ -13,6 +13,8 @@ export class TransformInterceptor < T > implements NestInterceptor < T,
 IHttpResponseSuccess < T >> {
   constructor(private readonly reflector: Reflector) {}
   intercept(context : ExecutionContext, call$ : Observable < T >) : Observable < IHttpResponseSuccess < T >> {
+    console.log(this.reflector)
+    console.log('context::', context.getHandler())
     return call$.pipe(map((result: any) => {
       console.log('result::', result)
       return { 
