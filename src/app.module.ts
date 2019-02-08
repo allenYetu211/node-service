@@ -20,6 +20,8 @@ import { ArticleModules } from './modules/articles/article.modules';
 import { LikeModules } from './modules/likes/like.modules';
 import {CommentModules} from './modules/comment/comment.modules'
 import {TransformInterceptor} from './interceptor/transform.interceptor'
+
+import {CoreMiddleware} from 'src/middleware/core.middleware'
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost/nest'),
@@ -28,19 +30,13 @@ import {TransformInterceptor} from './interceptor/transform.interceptor'
     TagModules,
     LikeModules,
     CommentModules
-    // DatabaseModule
   ],
   controllers: [AppController],
-  // providers: [AppService, {
-  //   provide: APP_INTERCEPTOR,
-  //   useClass: TransformInterceptor
-  // }],
   providers: [AppService],
 })
 export class AppModule implements NestModule  {
   configure(consumer: MiddlewareConsumer) {
-    // consumer.apply(LoggerMiddleware, someLogger)
-    consumer.apply(LoggerMiddleware, someLogger)
+    consumer.apply(CoreMiddleware, LoggerMiddleware, someLogger)
     .with('ApplicationModule')
     .forRoutes('*')
   }
