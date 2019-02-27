@@ -1,5 +1,4 @@
 /**
- * @file: 
  * @module: app module
  * @author:  Allen OYang https://github.com/allenYetu211
  */

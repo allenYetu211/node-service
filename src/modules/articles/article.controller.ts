@@ -16,9 +16,17 @@ export class ArticleController {
 
   // 查找文章列表 && 处理 tag 分类 
   @Get()
-  public async getArticles( @Query('tag_class') tag_class):Promise<Article> {
-    const tags = tag_class ? {tags: tag_class} : {}
-    return await this.articleService.getArticles(tags)
+  public async getArticles( @Query() query):Promise<Article> {
+
+    console.log('========')
+    console.log('========')
+    console.log('========')
+    console.log('tag_class', query)
+    console.log('========')
+    console.log('========')
+    console.log('========')
+
+    return await this.articleService.getArticles(query)
   }
 
   // 查找单篇文章

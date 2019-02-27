@@ -1,4 +1,4 @@
-import { IsString, IsArray } from "class-validator";
+import { IsString, IsArray, IsBoolean } from "class-validator";
 
 export  class CreateArticleDto {
   @IsString()
@@ -9,4 +9,7 @@ export  class CreateArticleDto {
   readonly interduce: string;
   @IsString()
   readonly content: string;
+  @IsBoolean()
+  readonly publishState: boolean;
+  
 }

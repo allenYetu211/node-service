@@ -5,6 +5,10 @@ export const ArticleSchemas =  new mongoose.Schema({
   tags: Array,
   introduce: String,
   content: String,
+  publishState: {
+    type: Boolean,
+    default: false
+  },
   meta: {
     view: {
       type: Number,
