@@ -17,15 +17,6 @@ export class ArticleController {
   // 查找文章列表 && 处理 tag 分类 
   @Get()
   public async getArticles( @Query() query):Promise<Article> {
-
-    console.log('========')
-    console.log('========')
-    console.log('========')
-    console.log('tag_class', query)
-    console.log('========')
-    console.log('========')
-    console.log('========')
-
     return await this.articleService.getArticles(query)
   }
 
