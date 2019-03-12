@@ -16,6 +16,7 @@ import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { MongooseModule } from '@nestjs/mongoose';
 import {DatabaseModule} from 'src/processors/database/database.module'
 import { ArticleModules } from './modules/articles/article.modules';
+import { AuthModules } from './modules/auth/auth.modules';
 import { LikeModules } from './modules/likes/like.modules';
 import {CommentModules} from './modules/comment/comment.modules'
 import {TransformInterceptor} from './interceptor/transform.interceptor'
@@ -25,6 +26,7 @@ import {CoreMiddleware} from 'src/middleware/core.middleware'
   imports: [
     MongooseModule.forRoot('mongodb://localhost/nest'),
     ArticleModules,
+    AuthModules,
     CatsModules,
     TagModules,
     LikeModules,
