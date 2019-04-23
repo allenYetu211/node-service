@@ -9,6 +9,7 @@ import { AppService } from './app.service';
 
 import {CatsModules} from './modules/cats/cats.modules'
 import {TagModules} from 'src/modules/tag/tag.modules'
+import {LoginModules} from 'src/modules/login/login.modules'
 import { LoggerMiddleware, someLogger } from './middleware/logger.middleware';
 import { CatsController } from './modules/cats/cats.controller';
 import { HttpExceptionFilter } from './filter/http-exception.filter';
@@ -30,7 +31,8 @@ import {CoreMiddleware} from 'src/middleware/core.middleware'
     CatsModules,
     TagModules,
     LikeModules,
-    CommentModules
+    CommentModules,
+    LoginModules
   ],
   controllers: [AppController],
   providers: [AppService],

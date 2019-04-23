@@ -1,19 +1,21 @@
-import { Controller, Post, Body } from "@nestjs/common";
-import {CreateArticleDto} from 'src/modules/auth/dto/create-auth';
-import {AuthService} from 'src/modules/auth/auth.service'
+
+import { Controller, Get, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService){}
+  constructor(private readonly authService: AuthService) {}
 
-  @Post('createuser')
-  public async createUser (@Body() body:CreateArticleDto) {
-    console.log('createUser:::', body);
-    console.log('authService::::',   this.authService);
+  @Get('token')
+  async createToken(): Promise<any> {
+    return await this.authService.createToken();
   }
 
-  @Post('login')
-  public async adminLogin() {
-    console.log('login')
+  @Get('data')
+  @UseGuards(AuthGuard())
+  findAll() {
+    // this route is restricted by AuthGuard
+    // JWT strategy
   }
 }
