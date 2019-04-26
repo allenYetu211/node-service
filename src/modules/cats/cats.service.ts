@@ -8,8 +8,8 @@ import { Injectable } from "@nestjs/common";
 // import { InjectModel } from "nestjs-typegoose";
 import { InjectModel } from '@nestjs/mongoose';
 import {Cats} from './cats.model'
-import { CreateCatDto } from "src/dto/create-cat.dto";
-import { TMongooseModel } from 'src/interface/mongoose.interface';
+import { CreateCatDto } from "@app/dto/create-cat.dto";
+import { TMongooseModel } from '@app/interface/mongoose.interface';
 
 @Injectable()
 export class CatsService {

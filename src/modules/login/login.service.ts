@@ -1,9 +1,9 @@
 import { Injectable } from "@nestjs/common";
-import {CreateLoginDto} from 'src/modules/login/dto/create-login.dto'
+import {CreateLoginDto} from '@app/modules/login/dto/create-login.dto'
 
 import {Model} from 'mongoose';
 import { InjectModel} from '@nestjs/mongoose'
-import { Login } from 'src/modules/login/interfaces/login.interface'
+import { Login } from '@app/modules/login/interfaces/login.interface'
 
 @Injectable()
 export class LoginService{

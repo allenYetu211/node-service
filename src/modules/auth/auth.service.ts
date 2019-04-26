@@ -21,4 +21,8 @@ export class AuthService {
     // return await this.usersService.findOneByEmail(payload.email);
     return
   }
+
+  async createToken(): Promise<any> {
+    return 'createToken'
+  }
 }

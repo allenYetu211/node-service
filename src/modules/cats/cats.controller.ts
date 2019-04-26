@@ -16,13 +16,13 @@ import {
 } from '@nestjs/common'
 import {CreateCatDto} from '../../dto/create-cat.dto';
 import {CatsService} from './cats.service';
-import {ForbiddenException} from 'src/exception/forbideen.exception';
-import {HttpExceptionFilter} from 'src/filter/http-exception.filter';
-import {RolesGuard} from 'src/guards/roles.guard';
-import {Roles} from 'src/decorator/roles.decorator';
-import {LoggingInterceptor} from 'src/interceptor/logging.interceptor';
-// import {TransformInterceptor} from 'src/interceptor/transform.interceptor';
-import { ValidationPipe } from 'src/pipes/validation.pipe'
+import {ForbiddenException} from '@app/exception/forbideen.exception';
+import {HttpExceptionFilter} from '@app/filter/http-exception.filter';
+import {RolesGuard} from '@app/guards/roles.guard';
+import {Roles} from '@app/decorator/roles.decorator';
+import {LoggingInterceptor} from '@app/interceptor/logging.interceptor';
+// import {TransformInterceptor} from '@app/interceptor/transform.interceptor';
+import { ValidationPipe } from '@app/pipes/validation.pipe'
 
 // @UseFilters(HttpExceptionFilter)
 @Controller('cats')

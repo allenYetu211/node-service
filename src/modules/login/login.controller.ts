@@ -1,8 +1,8 @@
 import { Controller, Post, Body, Get, Res, Req, Query, HttpStatus, Param, NotFoundException, Put, Delete } from "@nestjs/common";
 
-import {CreateLoginDto} from 'src/modules/login/dto/create-login.dto'
-import { LoginService } from "src/modules/login/login.service";
-import { ValidataObjectId } from "src/pipes/validate-object-id.pipe";
+import {CreateLoginDto} from '@app/modules/login/dto/create-login.dto'
+import { LoginService } from "@app/modules/login/login.service";
+import { ValidataObjectId } from "@app/pipes/validate-object-id.pipe";
 
 @Controller('login')
 export class LoginController {

@@ -7,16 +7,40 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Nest Debug",
-      "protocol": "inspector",
+      "name": "Koa Program",
+      "runtimeArgs": [
+        "--nolazy",
+        "-r",
+        "ts-node/register",
+      ],
+      "args": [
+        "${workspaceFolder}/app/app.ts"
+      ],
+      "env": {
+        "DEBUG": "yuedun:*,-not_this",
+        "NODE_ENV": "development"
+      },
       "sourceMaps": true,
-      "stopOnEntry": true,
-      "console": "internalConsole",
-      "program": "${workspaceFolder}/src/main.ts",
-      "preLaunchTask": "tsc: build ${workspaceFolder}/tsconfig.json",
-      "outFiles": [
-        "${workspaceFolder}/dist/**/*.js"
-      ]
+      "cwd": "${workspaceFolder}",
+      "protocol": "inspector",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Nest Framework",
+      "args": [
+        "${workspaceFolder}/src/main.ts"
+      ],
+      "runtimeArgs": [
+        "--nolazy",
+        "-r",
+        "ts-node/register"
+      ],
+      "sourceMaps": true,
+      "cwd": "${workspaceRoot}",
+      "protocol": "inspector"
     }
   ]
 }

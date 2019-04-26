@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import {InjectModel} from "@nestjs/mongoose";
 import {Model} from 'mongoose';
-import {Article} from 'src/modules/articles/interfaces/article.interface';
+import {Article} from '@app/modules/articles/interfaces/article.interface';
 
 @Injectable()
 export class LikeService {

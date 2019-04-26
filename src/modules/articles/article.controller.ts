@@ -1,8 +1,8 @@
 import { Controller, Put, Res, Body, HttpStatus, Post, Get, Param, NotFoundException, Query, Delete, UseInterceptors } from "@nestjs/common";
-import {ArticleService} from 'src/modules/articles/article.service'
-import {CreateArticleDto} from 'src/modules/articles/dto/create-articles'
-import { ValidataObjectId } from "src/pipes/validate-object-id.pipe";
-import {Article} from 'src/modules/articles/interfaces/article.interface';
+import {ArticleService} from '@app/modules/articles/article.service'
+import {CreateArticleDto} from '@app/modules/articles/dto/create-articles'
+import { ValidataObjectId } from "@app/pipes/validate-object-id.pipe";
+import {Article} from '@app/modules/articles/interfaces/article.interface';
 
 @Controller('article')
 export class ArticleController {

@@ -2,7 +2,7 @@ import {Injectable, NestInterceptor, ExecutionContext} from '@nestjs/common';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import { Reflector } from '@nestjs/core';
-import {IHttpResponseSuccess, EHttpStatus, TMessage} from 'src/interface/http.interface'
+import {IHttpResponseSuccess, EHttpStatus, TMessage} from '@app/interface/http.interface'
 // export interface Response < T > {
 //   status: number;
 //   result: T
