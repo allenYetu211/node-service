@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose'
 
-export const LoginSchema = new mongoose.Schema({
+export const UserSchema = new mongoose.Schema({
   userName: String,
   password: String
 })
