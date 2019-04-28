@@ -11,7 +11,6 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-
   async validateUser(payload: JwtPayload): Promise<any> {
     // return await this.usersService.findOneByEmail(payload.email);
     return
@@ -20,7 +19,9 @@ export class AuthService {
   // 生成token  - 校验账号密码
   async createToken(createArticleDto: CreateArticleDto) {
     const user: JwtPayload = createArticleDto;
-    return jwt.sign(user, 'secretKey', { expiresIn: 3600 });
+    return {
+      token: jwt.sign(user, 'secretKey', { expiresIn: 3600 }),
+    };
   }
 
   async validataUser(token: string): Promise<any> { 
